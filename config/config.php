@@ -44,3 +44,7 @@ require_once __DIR__ . '/../includes/funcoes.php';
 // Mantém NOW() e DEFAULT CURRENT_TIMESTAMP no horário de Brasília
 // mesmo que o servidor MySQL esteja em UTC.
 $pdo->exec("SET time_zone = '-03:00'");
+
+// Cria/atualiza as tabelas automaticamente depois de cada deploy
+require_once __DIR__ . '/../includes/migracoes.php';
+aplicarMigracoes($pdo);

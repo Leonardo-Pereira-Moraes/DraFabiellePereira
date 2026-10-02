@@ -23,11 +23,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($nova !== $confirmar) {
         $erros[] = 'A confirmação não confere com a nova senha.';
     }
+    if ($nova === SENHA_PADRAO || $nova === $atual) {
+        $erros[] = 'Escolha uma senha diferente da atual.';
+    }
 
     if (!$erros) {
         $pdo->prepare('UPDATE usuarios SET senha_hash = ? WHERE id = ?')
             ->execute([password_hash($nova, PASSWORD_DEFAULT), $_SESSION['admin_id']]);
         session_regenerate_id(true);
+        unset($_SESSION['trocar_senha']);
         flash('sucesso', 'Senha alterada com sucesso.');
         irPara('index.php');
     }

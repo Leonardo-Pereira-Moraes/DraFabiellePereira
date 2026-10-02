@@ -29,10 +29,18 @@ function estaLogado(): bool
 }
 
 /** Chame no topo de toda página protegida. */
+// Senha criada pelo database/schema.sql. Quem entra com ela é levado a trocar.
+const SENHA_PADRAO = 'admin123';
+
 function exigirLogin(): void
 {
     if (!estaLogado()) {
         header('Location: login.php');
+        exit;
+    }
+    // Enquanto a senha padrão não for trocada, só a tela de senha fica acessível
+    if (!empty($_SESSION['trocar_senha']) && basename($_SERVER['PHP_SELF']) !== 'senha.php') {
+        header('Location: senha.php');
         exit;
     }
 }

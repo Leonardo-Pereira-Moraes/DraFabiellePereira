@@ -178,7 +178,7 @@ INSERT INTO configuracoes (chave, valor) VALUES
 ('exibir_precos',          '0'),
 -- Aviso no WhatsApp da dentista via CallMeBot (configurado no painel > Notificações)
 ('whatsapp_aviso_ativo',   '0'),
-('whatsapp_aviso_telefone', '5564992295095'),
+('whatsapp_aviso_telefone', '556492295095'),   -- sem o 9 extra: é assim que o WhatsApp dela está registrado
 ('whatsapp_aviso_apikey',  '');
 
 -- Seg a sex 08:00–12:00 e 14:00–18:00; sábado 08:00–12:00

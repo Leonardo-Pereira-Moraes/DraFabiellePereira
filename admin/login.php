@@ -40,6 +40,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             $pdo->prepare('UPDATE usuarios SET ultimo_login = NOW() WHERE id = ?')->execute([$admin['id']]);
 
+            // Ainda com a senha padrão do schema.sql: obriga a trocar antes de usar o painel
+            if ($senha === SENHA_PADRAO) {
+                $_SESSION['trocar_senha'] = true;
+                flash('erro', 'Por segurança, troque a senha padrão antes de continuar.');
+                irPara('senha.php');
+            }
             irPara('index.php');
         }
 
