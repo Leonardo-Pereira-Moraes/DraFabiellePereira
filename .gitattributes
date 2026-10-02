@@ -1,0 +1,5 @@
+# Quebras de linha no padrão Linux (servidor de produção é Linux/Apache)
+* text=auto eol=lf
+*.jpg binary
+*.png binary
+*.webp binary
